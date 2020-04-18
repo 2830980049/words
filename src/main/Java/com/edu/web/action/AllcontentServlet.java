@@ -44,7 +44,7 @@ public class AllcontentServlet extends HttpServlet {
         pageBean.setList(messageList);
         System.out.println(pageBean);
         req.setAttribute("pageBean",pageBean);
-        req.getRequestDispatcher("message_list.jsp").forward(req,resp);
+        req.getRequestDispatcher("/message/message_list.jsp").forward(req,resp);
     }
 
     @Override

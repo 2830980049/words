@@ -25,4 +25,22 @@ public class MessageServiceImpl implements MessageService {
         MessageDao messageDao = new MessageDaoImpl();
         return messageDao.findCount(o);
     }
+
+    @Override
+    public boolean create_words(Message message) {
+        MessageDao messageDao = new MessageDaoImpl();
+        return messageDao.create_words(message);
+    }
+
+    @Override
+    public boolean edit_words(Message message) {
+        MessageDao messageDao = new MessageDaoImpl();
+        return messageDao.edit_words(message);
+    }
+
+    @Override
+    public boolean delete_words(int id) {
+        MessageDao messageDao = new MessageDaoImpl();
+        return messageDao.delete_words(id);
+    }
 }

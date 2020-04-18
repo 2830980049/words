@@ -7,7 +7,7 @@ import com.edu.domain.User;
 
 public class UserServiceImpl implements UserService {
     @Override
-    public boolean Login(User user) {
+    public User Login(User user) {
         UserDao userDao = new UserDaoImpl();
         return userDao.Login(user);
     }

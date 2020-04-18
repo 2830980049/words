@@ -3,7 +3,7 @@ package com.edu.Dao;
 import com.edu.domain.User;
 
 public interface UserDao {
-    boolean Login(User user);
+    User Login(User user);
 
     boolean Regit(User user);
 

@@ -42,48 +42,17 @@ public class UserServlet extends HttpServlet {
     private void Login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserService userService = new UserServiceImpl();
         User user = new User();
-        boolean flag = false;
         String verificationCode = "";
         String verificationCode_1 = null;
-        System.out.println(req.getSession().getAttribute("user"));
-        if (req.getSession().getAttribute("user") != null){
-            user = (User)req.getSession().getAttribute("user");
-            flag = true;
-        }
-        else {
-            user.setUsername(req.getParameter("username"));
-            user.setPassword(req.getParameter("password"));
-            verificationCode = req.getParameter("verificationCode");
-            verificationCode_1 = (String)req.getSession().getAttribute("verificationCode");
-        }
-        boolean falg = false;
-        if (verificationCode.equalsIgnoreCase(verificationCode_1) || flag){
-            falg = userService.Login(user);
-            if (falg){
-                MessageService messageService = new MessageServiceImpl();
-                PageBean pageBean = new PageBean();
-                Integer page = 1;
-                //当前页
-                if (req.getParameter("page") != null)
-                    page = Integer.parseInt(req.getParameter("page"));
-                //限制数
-                Integer limit = 6;
-                pageBean.setLimit(limit);
-                pageBean.setPage(page);
-                //总记录数
-                Integer num = messageService.findCount(user.getUsername());
-                pageBean.setAllnums(num);
-                //总页数
-                if (num % limit == 0)
-                    pageBean.setAllpages(num / limit);
-                else
-                    pageBean.setAllpages(num / limit + 1);
-                List<Message> messageList = messageService.findAll(user.getUsername(),(page-1) * limit,limit);
-                pageBean.setList(messageList);
-                System.out.println(pageBean);
-                req.setAttribute("pageBean",pageBean);
-                req.getSession().setAttribute("user",user);
-                req.getRequestDispatcher("my_message_list.jsp").forward(req,resp);
+        user.setUsername(req.getParameter("username"));
+        user.setPassword(req.getParameter("password"));
+        verificationCode = req.getParameter("verificationCode");
+        verificationCode_1 = (String)req.getSession().getAttribute("verificationCode");
+        User user1 = userService.Login(user);
+        if (verificationCode.equalsIgnoreCase(verificationCode_1)){
+            if (user1 != null){
+                req.getSession().setAttribute("user",user1);
+                resp.sendRedirect(req.getContextPath()+"/AllcontentServlet.do");
             }
             else{
                 req.setAttribute("msg","账号或者密码错误");
@@ -120,7 +89,7 @@ public class UserServlet extends HttpServlet {
                 resp.sendRedirect("reg.jsp");
         }
         else
-        resp.sendRedirect("reg.jsp");
+        resp.sendRedirect(req.getContextPath()+"/admin/reg.jsp");
     }
 
     /**
@@ -133,7 +102,7 @@ public class UserServlet extends HttpServlet {
         User user1 = userService.finduser(user.getUsername());
         System.out.println(user1);
         req.setAttribute("user1",user1);
-        req.getRequestDispatcher("user.jsp").forward(req,resp);
+        req.getRequestDispatcher("admin/user.jsp").forward(req,resp);
     }
 
     /**
@@ -154,7 +123,7 @@ public class UserServlet extends HttpServlet {
         if (flag)
             req.getRequestDispatcher("login.jsp").forward(req,resp);
         else
-            resp.sendRedirect(req.getContextPath()+"/user.jsp");
+            resp.sendRedirect(req.getContextPath()+"/admin/user.jsp");
     }
 
 

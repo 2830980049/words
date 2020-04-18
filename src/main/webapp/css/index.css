@@ -5,9 +5,6 @@
 	font-size:100%;
 	font-family:"宋体";
 }
-ul{
-	list-style:none;
-}
 a{
 	text-decoration: none;
 }
@@ -98,7 +95,7 @@ header nav>a{
 	margin:0 auto;
 	white-space: nowrap;
 	overflow: hidden;
-　　	text-overflow: ellipsis;
+　　text-overflow: ellipsis;
 	line-height: 30px;
 }
 .alt-content>p{
@@ -114,20 +111,8 @@ header nav>a{
 	float:right;
 	margin-right:20px;
 }
-#pagefy ul li{
-	float:left;
-	margin-left:5px;
-	padding:5px 0px;
-	border:1px solid #428BCA;
-}
-#pagefy ul li a{
-	padding:5px 10px;
-	color:#428BCA;
-}
-#pagefy ul li a:hover{
-	color:#428BCA;
-	background-color:#EEEEEE;
-}
+
+
  #fatie{
 	float:left;
 	margin-left:20px;
