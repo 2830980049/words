@@ -29,4 +29,10 @@ public class UserServiceImpl implements UserService {
         UserDao userDao = new UserDaoImpl();
         return userDao.finduser(username);
     }
+
+    @Override
+    public boolean update_pwd(String username, String password) {
+        UserDao userDao = new UserDaoImpl();
+        return userDao.update_pwd(username,password);
+    }
 }

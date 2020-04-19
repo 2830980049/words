@@ -130,7 +130,7 @@ public class MessageServlet extends HttpServlet {
         message.setContent(req.getParameter("content"));
         boolean flag = messageService.edit_words(message);
         if (flag)
-            resp.sendRedirect(req.getContextPath()+"/AllcontentServlet.do");
+            resp.sendRedirect(req.getContextPath()+"/MessageServlet.do?method=words");
         else
             resp.sendRedirect(req.getContextPath()+"/message/edit_message.jsp");
     }
@@ -146,10 +146,9 @@ public class MessageServlet extends HttpServlet {
         MessageService messageService = new MessageServiceImpl();
         boolean flag = messageService.delete_words(Integer.parseInt(req.getParameter("id")));
         if (flag)
-            resp.sendRedirect(req.getContextPath()+"/AllcontentServlet.do");
+            resp.sendRedirect(req.getContextPath()+"/MessageServlet.do?method=words");
         else
             resp.sendRedirect(req.getContextPath()+"/message/edit_message.jsp");
-
     }
 
 

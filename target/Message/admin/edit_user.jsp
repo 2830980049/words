@@ -1,4 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page isELIgnored="false" %>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -13,6 +16,8 @@
 
         <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+        <script src="${pageContext.request.contextPath}/webjars/jquery/3.3.1-2/jquery.min.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-default">
@@ -26,36 +31,36 @@
         </nav>
         <div class="container">
             <div class="jumbotron">
-                <h1>Hello, ${user.name}!</h1>
+                <h1>Hello, ${user.username}!</h1>
                 <p>请斟酌后修改 ^_^</p>
             </div>
             <div class="page-header">
                 <h3><small>个人信息</small></h3>
             </div>
-            <form class="form-horizontal" action="" method="post">
+            <form class="form-horizontal" action="" method="post" id="form1">
                
                 <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">用户 ：</label>
                     <div class="col-sm-6">
-                        <input name="name" class="form-control" id="name" value="" readonly>
+                        <input name="username" class="form-control" id="name" value="${user.username}" readonly>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="password" class="col-sm-2 control-label">密码 ：</label>
                     <div class="col-sm-6">
-                        <input name="password" class="form-control" id="password" value="">
+                        <input name="password" class="form-control" id="password" value="" type="password">
                     </div>
                 </div>
                  <div class="form-group">
                     <label for="password" class="col-sm-2 control-label">密码确认 ：</label>
                     <div class="col-sm-6">
-                        <input name="password1" class="form-control" id="password1" value="">
+                        <input name="password1" class="form-control" id="password1" value="" type="password">
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary">保存</button>&nbsp;&nbsp;&nbsp;
+                        <button id="btn" type="submit" class="btn btn-primary">保存</button>&nbsp;&nbsp;&nbsp;
                     </div>
                 </div>
             </form>
@@ -63,5 +68,15 @@
         <footer class="text-center" >
             copy@imooc
         </footer>
+    <script type="text/javascript">
+        $("#btn").click(function () {
+            if ($("#password").val() == $("#password1").val()){
+                $("#form1").attr("action","${pageContext.request.contextPath}/UserServlet.do?method=update_pwd");
+            }
+            else{
+                alert("密码不一致！");
+            }
+        })
+    </script>
     </body>
 </html>

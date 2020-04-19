@@ -17,6 +17,9 @@ public class Login_Check implements Filter {
         login_page.add("/message_list.jsp");
         login_page.add("/UserServlet.do");
         login_page.add("/AllcontentServlet.do");
+        login_page.add("/Verification_CodeServlet.do");
+        login_page.add("/404.jsp");
+        login_page.add("/500.jsp");
     }
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {

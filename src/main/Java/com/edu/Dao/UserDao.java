@@ -10,4 +10,6 @@ public interface UserDao {
     boolean Update_date(User user);
 
     User finduser(String username);
+
+    boolean update_pwd(String username, String password);
 }

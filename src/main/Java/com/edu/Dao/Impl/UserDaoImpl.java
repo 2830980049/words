@@ -125,4 +125,27 @@ public class UserDaoImpl implements UserDao {
         }
         return null;
     }
+
+    @Override
+    public boolean update_pwd(String username, String password) {
+        Connection con = null;
+        PreparedStatement pres = null;
+        try{
+            con = JDBC_Untils.getConnection();
+            String sql = "update user set password = ? where username = ?";
+            pres = con.prepareStatement(sql);
+            pres.setString(1,password);
+            pres.setString(2,username);
+            int num =  pres.executeUpdate();
+            if (num > 0)
+                return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            JDBC_Untils.relese(pres,con);
+        }
+        return false;
+    }
 }

@@ -31,6 +31,10 @@ public class UserServlet extends HttpServlet {
                     finduser(req,resp);
                     else if("update".equals(methodName))
                         Update_date(req,resp);
+                        else if ("update_pwd".equals(methodName))
+                            update_pwd(req,resp);
+                            else if ("out".equals(methodName))
+                                out(req,resp);
     }
 
 
@@ -61,6 +65,15 @@ public class UserServlet extends HttpServlet {
         }
         else
             resp.sendRedirect(req.getContextPath()+"/login.jsp");
+    }
+
+    /**
+     * 登出
+     */
+    private void out(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        req.getSession().invalidate();
+        System.out.println(req.getSession().getAttribute("user"));
+        resp.sendRedirect(req.getContextPath()+"/AllcontentServlet.do");
     }
 
     /**
@@ -120,12 +133,36 @@ public class UserServlet extends HttpServlet {
         user.setPhone(req.getParameter("phone"));
         UserService userService = new UserServiceImpl();
         boolean flag = userService.Update_date(user);
-        if (flag)
+        if (flag){
+            UserServlet userServlet = new UserServlet();
+            userServlet.out(req,resp);
             req.getRequestDispatcher("login.jsp").forward(req,resp);
+        }
+
         else
             resp.sendRedirect(req.getContextPath()+"/admin/user.jsp");
     }
 
+    /**
+     *修改密码
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    private void update_pwd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UserService userService = new UserServiceImpl();
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+        boolean flag = userService.update_pwd(username,password);
+        if (flag){
+            UserServlet userServlet = new UserServlet();
+            userServlet.out(req,resp);
+            req.getRequestDispatcher("login.jsp").forward(req,resp);
+        }
+        else
+            resp.sendRedirect(req.getContextPath()+"/admin/edit_user.jsp");
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

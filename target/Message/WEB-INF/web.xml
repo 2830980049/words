@@ -24,7 +24,7 @@
   </filter-mapping>
 
   <!-- 权限过滤 -->
-    <!--
+  
   <filter>
     <filter-name>Login_Check</filter-name>
     <filter-class>com.edu.Filter.Login_Check</filter-class>
@@ -38,8 +38,6 @@
     <filter-name>Login_Check</filter-name>
     <url-pattern>*.do</url-pattern>
   </filter-mapping>
-
-    -->
 
   <!-- 指定错误页面 -->
   <error-page>

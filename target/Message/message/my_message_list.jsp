@@ -1,7 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -35,6 +36,12 @@
                     </nav>
                     <nav>
                         <a href="${pageContext.request.contextPath}/UserServlet.do?method=finduser">我的信息</a>
+                    </nav>
+                    <nav>
+                        <a href="${pageContext.request.contextPath}/UserServlet.do?method=out">登出</a>
+                    </nav>
+                    <nav>
+                        <a href="${pageContext.request.contextPath}/admin/edit_user.jsp">修改密码</a>
                     </nav>
                 <%} else { %>
                     <nav>
@@ -91,9 +98,9 @@
         <div class="container" style="text-align: center">
             <nav aria-label="Page navigation">
                 <ul class="pagination pagination-lg">
-                    <li><a href="${pageContext.request.contextPath}/AllcontentServlet.do?page=1">首页</a> </li>
+                    <li><a href="${pageContext.request.contextPath}/MessageServlet.do?method=words&page=1">首页</a> </li>
                     <c:if test="${pageBean.page != 1}">
-                        <li><a href="${pageContext.request.contextPath}/AllcontentServlet.do?page=${pageBean.page - 1}" aria-label="Next"><span aria-hidden="true">&laquo;</span></a></li>
+                        <li><a href="${pageContext.request.contextPath}/MessageServlet.do?method=words&page=${pageBean.page - 1}" aria-label="Next"><span aria-hidden="true">&laquo;</span></a></li>
                     </c:if>
 
                     <c:if test="${pageBean.page == 1}">
@@ -105,19 +112,19 @@
                             <li class="active"><a href="#">${i}<span class="sr-only">(current)</span></a></li>
                         </c:if>
                         <c:if test="${pageBean.page != i}">
-                            <li><a href="${pageContext.request.contextPath}/AllcontentServlet.do?page=${i}">${i}</a></li>
+                            <li><a href="${pageContext.request.contextPath}/MessageServlet.do?method=words&page=${i}">${i}</a></li>
                         </c:if>
                     </c:forEach>
 
                     <c:if test="${pageBean.page != pageBean.allpages}">
-                        <li><a href="${pageContext.request.contextPath}/AllcontentServlet.do?page=${pageBean.page + 1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                        <li><a href="${pageContext.request.contextPath}/MessageServlet.do?method=words&page=${pageBean.page + 1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
                     </c:if>
 
                     <c:if test="${pageBean.page == pageBean.allpages}">
                         <li class="disabled"><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
                     </c:if>
 
-                    <li><a href="${pageContext.request.contextPath}/AllcontentServlet.do?page=${pageBean.allpages}">尾页</a></li>
+                    <li><a href="${pageContext.request.contextPath}/MessageServlet.do?method=words&page=${pageBean.allpages}">尾页</a></li>
                 </ul>
             </nav>
         </div>

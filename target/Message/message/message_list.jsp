@@ -35,6 +35,12 @@
                     <nav>
                         <a href="${pageContext.request.contextPath}/UserServlet.do?method=finduser">我的信息</a>
                     </nav>
+                    <nav>
+                        <a href="${pageContext.request.contextPath}/UserServlet.do?method=out">登出</a>
+                    </nav>
+                    <nav>
+                        <a href="${pageContext.request.contextPath}/admin/edit_user.jsp">修改密码</a>
+                    </nav>
                 <%} else { %>
                     <nav>
                         <a href="${pageContext.request.contextPath}/login.jsp">登录</a>
