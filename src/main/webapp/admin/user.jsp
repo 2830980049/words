@@ -85,7 +85,7 @@
             </form>
         </div>
         <footer class="text-center" >
-            copy@imooc
+            Create By WuQiLi
         </footer>
     </body>
 </html>

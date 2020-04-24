@@ -19,7 +19,7 @@
             <div class="container">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">
-                        慕课网留言板
+                        留言板
                     </a>
                 </div>
             </div>
@@ -58,7 +58,7 @@
             </form>
         </div>
         <footer class="text-center" >
-            copy@imooc
+            Create By WuQiLi
         </footer>
     </body>
 </html>
